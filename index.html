@@ -1,9 +1,11 @@
-<!--🔥BESTIAS Y MONSTRUOS🔥-->
+<!--🔥 BESTIAS Y MONSTRUOS 🔥-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Juego Bestias y Monstruos en Roblox. Elige tu bestia y domina la era salvaje.">
+<meta name="keywords" content="Roblox, Bestias, Monstruos, juego, bestias y monstruos">
 <title>🔥 BESTIAS Y MONSTRUOS 🔥</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
@@ -12,445 +14,357 @@
     --ember: #ff8c00;
     --gold: #ffd700;
     --dark: #050305;
-    --deep: #0d0509;
     --blood: #8b0000;
-    --corrupt: #4a0080;
-    --pure: #003580;
-    --teal: #00c8a0;
-    --smoke: rgba(255,255,255,0.04);
+    --crystal: #00c8ff;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--dark);
-    color: #e8d5b0;
-    font-family: 'Cinzel', serif;
-    overflow-x: hidden;
-    cursor: crosshair;
-  }
-
-  /* ─── CANVAS PARTICLES ─── */
+  body { background: var(--dark); color: #e8d5b0; font-family: 'Cinzel', serif; overflow-x: hidden; cursor: crosshair; }
   #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
-  /* ─── HERO ─── */
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(5,3,5,0.93); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,80,0,0.2);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.65rem 2rem; gap: 1rem; flex-wrap: wrap;
+  }
+  .nav-logo {
+    font-family: 'Cinzel Decorative', serif; font-size: 0.72rem;
+    background: linear-gradient(90deg, #ff8c00, #ffd700);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; letter-spacing: 0.05em; white-space: nowrap;
+  }
+  .nav-links { display: flex; gap: 0; flex-wrap: wrap; align-items: center; }
+  .nav-links a {
+    color: #907060; text-decoration: none; font-size: 0.58rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.4rem 0.65rem; transition: color 0.2s; white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--ember); }
+  .nav-play {
+    font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 0.45rem 1.1rem; text-decoration: none;
+    background: linear-gradient(135deg, #ff4500, #ff8c00); color: #fff;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    margin-left: 0.5rem; transition: all 0.2s;
+  }
+  .nav-play:hover { background: linear-gradient(135deg, #ff6a00, #ffb000); transform: translateY(-1px); }
+
+  /* HERO */
   .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    z-index: 1;
-    padding: 2rem;
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; z-index: 1; padding: 6rem 2rem 2rem;
     background:
       radial-gradient(ellipse 80% 60% at 50% 80%, rgba(180,40,0,0.25) 0%, transparent 70%),
       radial-gradient(ellipse 60% 40% at 50% 0%, rgba(80,0,120,0.3) 0%, transparent 60%);
   }
-
   .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect width='60' height='60' fill='none'/%3E%3Cpath d='M0 0 L60 60 M60 0 L0 60' stroke='rgba(255,120,0,0.03)' stroke-width='0.5'/%3E%3C/svg%3E") repeat;
     pointer-events: none;
   }
-
   .eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.5em;
-    color: var(--ember);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    animation: fadeDown 1s ease both;
+    font-size: 0.7rem; letter-spacing: 0.5em; color: var(--ember);
+    text-transform: uppercase; margin-bottom: 1.5rem; animation: fadeDown 1s ease both;
   }
-
   .logo-wrap {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 1.5rem;
+    position: relative; display: inline-block; margin-bottom: 1.5rem;
     animation: blazeIn 1.2s cubic-bezier(.2,.8,.3,1) both;
   }
-
   .logo-wrap::after {
-    content: '🔥 BESTIAS Y MONSTRUOS 🔥';
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    content: '🔥 BESTIAS Y MONSTRUOS 🔥'; position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
     color: transparent;
     background: linear-gradient(180deg, #fff5c0, #ff6a00 40%, #8b0000);
-    -webkit-background-clip: text;
-    background-clip: text;
-    filter: blur(18px);
-    opacity: 0.5;
-    font-size: inherit;
-    font-family: inherit;
-    font-weight: inherit;
-    letter-spacing: inherit;
-    pointer-events: none;
+    -webkit-background-clip: text; background-clip: text;
+    filter: blur(18px); opacity: 0.5;
+    font-size: inherit; font-family: inherit; font-weight: inherit; pointer-events: none;
   }
-
   h1 {
     font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(2rem, 7vw, 5.5rem);
-    font-weight: 900;
-    letter-spacing: 0.04em;
-    line-height: 1.05;
+    font-size: clamp(2rem, 7vw, 5.5rem); font-weight: 900;
+    letter-spacing: 0.04em; line-height: 1.05;
     background: linear-gradient(160deg, #ffe680 0%, #ff8c00 35%, #ff2200 65%, #9b00ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 30px rgba(255,100,0,0.6));
-    position: relative;
-    z-index: 1;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(255,100,0,0.6)); position: relative; z-index: 1;
   }
-
   .hero-tagline {
-    margin-top: 1.2rem;
-    font-family: 'IM Fell English', serif;
-    font-style: italic;
-    font-size: clamp(1rem, 2.5vw, 1.35rem);
-    color: #d4b88a;
-    max-width: 640px;
-    line-height: 1.7;
-    animation: fadeUp 1.4s ease both 0.3s;
+    margin-top: 1.2rem; font-family: 'IM Fell English', serif; font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.35rem); color: #d4b88a; max-width: 640px;
+    line-height: 1.7; animation: fadeUp 1.4s ease both 0.3s;
     text-shadow: 0 2px 20px rgba(0,0,0,0.8);
   }
-
   .cta-group {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    animation: fadeUp 1.4s ease both 0.6s;
+    display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap;
+    justify-content: center; animation: fadeUp 1.4s ease both 0.6s;
   }
-
   .btn {
-    font-family: 'Cinzel', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0.9rem 2.4rem;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+    font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.2em;
+    text-transform: uppercase; padding: 0.9rem 2.4rem; border: none; cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
     transition: all 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-fire {
-    background: linear-gradient(135deg, #ff4500, #ff8c00);
-    color: #fff;
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-fire {
+    background: linear-gradient(135deg, #ff4500, #ff8c00); color: #fff;
     box-shadow: 0 0 30px rgba(255,80,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
   }
-  .btn-fire:hover {
-    background: linear-gradient(135deg, #ff6a00, #ffaa00);
-    box-shadow: 0 0 50px rgba(255,120,0,0.7);
-    transform: translateY(-2px);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--ember);
-    border: 1px solid rgba(255,140,0,0.4);
-    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-  }
-  .btn-ghost:hover {
-    background: rgba(255,100,0,0.1);
-    border-color: var(--ember);
-    transform: translateY(-2px);
-  }
-
+  .btn-fire:hover { background: linear-gradient(135deg, #ff6a00, #ffaa00); box-shadow: 0 0 50px rgba(255,120,0,0.7); transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--ember); border: 1px solid rgba(255,140,0,0.4); }
+  .btn-ghost:hover { background: rgba(255,100,0,0.1); border-color: var(--ember); transform: translateY(-2px); }
   .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    opacity: 0.5;
-    animation: float 2s ease-in-out infinite;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    color: var(--ember);
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    opacity: 0.5; animation: float 2s ease-in-out infinite;
+    font-size: 0.65rem; letter-spacing: 0.3em; color: var(--ember);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
   }
-  .scroll-hint::after {
-    content: '▼';
-    font-size: 0.8rem;
-  }
+  .scroll-hint::after { content: '▼'; font-size: 0.8rem; }
 
-  /* ─── DIVIDER ─── */
+  /* DIVIDER */
   .divider {
-    width: 100%;
-    height: 2px;
+    width: 100%; height: 2px; position: relative; z-index: 1;
     background: linear-gradient(90deg, transparent, var(--fire), var(--gold), var(--fire), transparent);
-    position: relative;
-    z-index: 1;
-    margin: 0;
   }
   .divider::before {
-    content: '⚔';
-    position: absolute;
-    left: 50%;
-    top: 50%;
+    content: attr(data-icon); position: absolute; left: 50%; top: 50%;
     transform: translate(-50%, -50%);
-    background: var(--dark);
-    padding: 0 1rem;
-    color: var(--gold);
-    font-size: 1.2rem;
+    background: var(--dark); padding: 0 1rem; color: var(--gold); font-size: 1.2rem;
   }
 
-  /* ─── SECTION ─── */
-  section {
-    position: relative;
-    z-index: 1;
-    padding: 5rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
+  /* SECTIONS */
+  section { position: relative; z-index: 1; padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
   .section-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    text-align: center;
-    margin-bottom: 0.5rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-shadow: 0 0 20px rgba(255,215,0,0.4);
+    font-family: 'Cinzel Decorative', serif; font-size: clamp(1.2rem, 3vw, 2rem);
+    text-align: center; margin-bottom: 0.5rem; color: var(--gold);
+    letter-spacing: 0.1em; text-shadow: 0 0 20px rgba(255,215,0,0.4);
   }
   .section-sub {
-    font-family: 'IM Fell English', serif;
-    font-style: italic;
-    text-align: center;
-    color: #a08060;
-    margin-bottom: 3rem;
-    font-size: 1rem;
+    font-family: 'IM Fell English', serif; font-style: italic;
+    text-align: center; color: #a08060; margin-bottom: 3rem; font-size: 1rem;
   }
 
-  /* ─── GRID BESTIAS ─── */
-  .beast-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1rem;
-  }
-
+  /* BEAST GRID */
+  .beast-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 1rem; }
   .beast-card {
     background: linear-gradient(145deg, rgba(20,8,5,0.9), rgba(10,3,15,0.9));
-    border: 1px solid rgba(255,140,0,0.15);
-    padding: 1.4rem 1rem;
-    text-align: center;
-    transition: all 0.3s cubic-bezier(.2,.8,.3,1);
-    position: relative;
-    overflow: hidden;
+    border: 1px solid rgba(255,140,0,0.15); padding: 1.4rem 1rem;
+    text-align: center; transition: all 0.3s cubic-bezier(.2,.8,.3,1);
+    position: relative; overflow: hidden;
     clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
   }
-
-  .beast-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .beast-card.pura::before  { background: radial-gradient(circle at 50% 0%, rgba(0,80,200,0.25), transparent 70%); }
+  .beast-card::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s; }
+  .beast-card.pura::before    { background: radial-gradient(circle at 50% 0%, rgba(0,80,200,0.25), transparent 70%); }
   .beast-card.corrupta::before { background: radial-gradient(circle at 50% 0%, rgba(120,0,200,0.25), transparent 70%); }
-  .beast-card.origen::before { background: radial-gradient(circle at 50% 0%, rgba(200,130,0,0.25), transparent 70%); }
-
+  .beast-card.origen::before  { background: radial-gradient(circle at 50% 0%, rgba(200,130,0,0.25), transparent 70%); }
   .beast-card:hover { transform: translateY(-6px) scale(1.02); border-color: rgba(255,140,0,0.5); }
   .beast-card:hover::before { opacity: 1; }
-
   .beast-card .icon { font-size: 2.2rem; display: block; margin-bottom: 0.6rem; filter: drop-shadow(0 0 8px rgba(255,150,0,0.5)); }
-  .beast-card .name {
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #d4b88a;
-    line-height: 1.3;
-  }
+  .beast-card .name { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #d4b88a; line-height: 1.3; }
   .beast-card .badge {
-    display: inline-block;
-    font-size: 0.55rem;
-    letter-spacing: 0.15em;
-    padding: 0.15rem 0.5rem;
-    border-radius: 0px;
-    margin-top: 0.5rem;
-    text-transform: uppercase;
+    display: inline-block; font-size: 0.55rem; letter-spacing: 0.15em;
+    padding: 0.15rem 0.5rem; margin-top: 0.5rem; text-transform: uppercase;
     clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
   }
-  .badge-pura    { background: rgba(0,60,180,0.5); color: #80b0ff; border: 1px solid rgba(0,80,200,0.4); }
+  .badge-pura     { background: rgba(0,60,180,0.5); color: #80b0ff; border: 1px solid rgba(0,80,200,0.4); }
   .badge-corrupta { background: rgba(100,0,160,0.5); color: #cc88ff; border: 1px solid rgba(120,0,180,0.4); }
-  .badge-origen  { background: rgba(150,80,0,0.5); color: #ffcc66; border: 1px solid rgba(180,100,0,0.4); }
+  .badge-origen   { background: rgba(150,80,0,0.5); color: #ffcc66; border: 1px solid rgba(180,100,0,0.4); }
 
-  /* ─── MONSTER SECTION ─── */
-  .monster-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
+  /* MONSTERS */
+  .monster-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
   @media(max-width:640px) { .monster-cols { grid-template-columns: 1fr; } }
-
   .monster-block {
-    background: rgba(10,3,5,0.7);
-    border: 1px solid rgba(255,50,0,0.2);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
+    background: rgba(10,3,5,0.7); border: 1px solid rgba(255,50,0,0.2);
+    padding: 2rem; position: relative; overflow: hidden;
   }
   .monster-block::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, transparent, var(--blood), transparent);
   }
-
   .monster-block h3 {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
+    font-family: 'Cinzel Decorative', serif; font-size: 0.9rem;
+    letter-spacing: 0.15em; margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.6rem;
   }
-  .h3-boss    { color: #ff6060; }
+  .h3-boss { color: #ff6060; }
   .h3-hostile { color: #ff9040; }
-
   .monster-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
   .monster-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    font-size: 0.8rem;
-    color: #c0a080;
+    display: flex; align-items: center; gap: 0.7rem;
+    font-size: 0.8rem; color: #c0a080;
     padding: 0.4rem 0.6rem;
     border-left: 2px solid rgba(255,80,0,0.2);
-    transition: all 0.2s;
-    letter-spacing: 0.05em;
+    transition: all 0.2s; letter-spacing: 0.05em;
   }
-  .monster-list li:hover {
-    background: rgba(255,80,0,0.06);
-    border-left-color: var(--fire);
-    color: #e8c898;
-    padding-left: 1rem;
-  }
+  .monster-list li:hover { background: rgba(255,80,0,0.06); border-left-color: var(--fire); color: #e8c898; padding-left: 1rem; }
   .monster-list .emo { font-size: 1.1rem; }
 
-  /* ─── LORE STRIP ─── */
+  /* LORE */
   .lore-strip {
     background: linear-gradient(135deg, rgba(60,0,0,0.5), rgba(30,0,60,0.5));
-    border: 1px solid rgba(255,80,0,0.15);
-    padding: 3rem 2rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto 4rem;
-    max-width: 800px;
-    z-index: 1;
+    border: 1px solid rgba(255,80,0,0.15); padding: 3rem 2rem; text-align: center;
+    position: relative; overflow: hidden; margin: 0 auto 2rem; max-width: 800px; z-index: 1;
   }
-  .lore-strip::before, .lore-strip::after {
-    content: '◆';
-    position: absolute;
-    font-size: 4rem;
-    color: rgba(255,100,0,0.05);
-  }
-  .lore-strip::before { top: -1rem; left: -1rem; }
-  .lore-strip::after  { bottom: -1rem; right: -1rem; }
+  .lore-strip::before { content: '◆'; position: absolute; font-size: 4rem; color: rgba(255,100,0,0.05); top: -1rem; left: -1rem; }
+  .lore-strip::after  { content: '◆'; position: absolute; font-size: 4rem; color: rgba(255,100,0,0.05); bottom: -1rem; right: -1rem; }
+  .lore-strip p { font-family: 'IM Fell English', serif; font-style: italic; font-size: clamp(0.95rem, 2vw, 1.15rem); line-height: 1.9; color: #c8a878; position: relative; z-index: 1; }
+  .lore-strip .highlight { color: var(--gold); font-style: normal; font-family: 'Cinzel', serif; font-size: 0.85em; }
 
-  .lore-strip p {
-    font-family: 'IM Fell English', serif;
-    font-style: italic;
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
-    line-height: 1.9;
-    color: #c8a878;
-    position: relative;
-    z-index: 1;
-  }
-  .lore-strip .highlight {
-    color: var(--gold);
-    font-style: normal;
-    font-family: 'Cinzel', serif;
-    font-size: 0.85em;
-    letter-spacing: 0.05em;
-  }
-
-  /* ─── WARNING BANNER ─── */
+  /* WARNING */
   .warning-banner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    background: rgba(139,0,0,0.15);
-    border: 1px solid rgba(139,0,0,0.4);
-    padding: 1rem 2rem;
-    margin: 0 auto 2rem;
-    max-width: 700px;
-    z-index: 1;
-    position: relative;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    color: #ff8080;
-    text-transform: uppercase;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    background: rgba(139,0,0,0.15); border: 1px solid rgba(139,0,0,0.4);
+    padding: 1rem 2rem; margin: 0 auto 2rem; max-width: 700px;
+    z-index: 1; position: relative;
+    font-size: 0.8rem; letter-spacing: 0.1em; color: #ff8080; text-transform: uppercase;
     animation: pulse 2.5s ease-in-out infinite;
   }
 
-  /* ─── FOOTER ─── */
+  /* TIENDA */
+  .shop-tabs {
+    display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap;
+  }
+  .shop-tab {
+    font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; padding: 0.6rem 1.5rem;
+    background: transparent; border: 1px solid rgba(255,140,0,0.25);
+    color: #a08060; cursor: pointer; transition: all 0.2s;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .shop-tab.active, .shop-tab:hover { background: rgba(255,100,0,0.15); border-color: var(--ember); color: var(--ember); }
+  .shop-panel { display: none; }
+  .shop-panel.active { display: block; }
+
+  /* GAMEPASSES */
+  .pass-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .pass-card {
+    background: linear-gradient(145deg, rgba(15,5,25,0.95), rgba(8,3,12,0.95));
+    border: 1px solid rgba(255,140,0,0.2); padding: 2rem;
+    position: relative; overflow: hidden; transition: all 0.3s;
+    clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);
+  }
+  .pass-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ember), transparent);
+  }
+  .pass-card:hover { transform: translateY(-5px); border-color: rgba(255,140,0,0.5); box-shadow: 0 10px 40px rgba(255,80,0,0.2); }
+  .pass-icon { font-size: 3rem; margin-bottom: 1rem; display: block; filter: drop-shadow(0 0 12px rgba(255,150,0,0.6)); }
+  .pass-name { font-family: 'Cinzel Decorative', serif; font-size: 0.9rem; color: var(--gold); margin-bottom: 0.5rem; }
+  .pass-desc { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.85rem; color: #a08060; margin-bottom: 1.2rem; line-height: 1.6; }
+  .pass-perks { list-style: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .pass-perks li { font-size: 0.72rem; color: #c0a880; display: flex; align-items: center; gap: 0.5rem; letter-spacing: 0.05em; }
+  .pass-perks li::before { content: '◆'; color: var(--ember); font-size: 0.5rem; }
+  .pass-price {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(255,80,0,0.15); border: 1px solid rgba(255,80,0,0.3);
+    padding: 0.4rem 1rem; font-size: 0.85rem; color: #ffcc88;
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  }
+
+  /* CRISTALES */
+  .crystal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 1rem; }
+  .crystal-card {
+    background: linear-gradient(145deg, rgba(0,15,30,0.95), rgba(0,8,20,0.95));
+    border: 1px solid rgba(0,180,255,0.2); padding: 1.5rem 1rem;
+    text-align: center; transition: all 0.3s; position: relative; overflow: hidden;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  }
+  .crystal-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--crystal), transparent);
+  }
+  .crystal-card:hover { transform: translateY(-4px); border-color: rgba(0,200,255,0.5); box-shadow: 0 8px 30px rgba(0,150,255,0.2); }
+  .crystal-card.best-value { border-color: rgba(255,215,0,0.4); }
+  .crystal-card.best-value::after {
+    content: '⭐ MEJOR VALOR';
+    position: absolute; top: 0.4rem; right: 0;
+    background: linear-gradient(90deg, var(--gold), #ff8c00);
+    color: #000; font-size: 0.42rem; letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem; font-family: 'Cinzel', serif;
+  }
+  .crystal-icon { font-size: 2.5rem; margin-bottom: 0.6rem; display: block; filter: drop-shadow(0 0 10px rgba(0,200,255,0.7)); }
+  .crystal-amount { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--crystal); margin-bottom: 0.3rem; text-shadow: 0 0 10px rgba(0,200,255,0.5); }
+  .crystal-name { font-size: 0.6rem; letter-spacing: 0.15em; color: #6090a0; text-transform: uppercase; margin-bottom: 1rem; }
+  .crystal-price {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    background: rgba(0,100,180,0.2); border: 1px solid rgba(0,150,255,0.3);
+    padding: 0.3rem 0.8rem; font-size: 0.8rem; color: #88ccff;
+    clip-path: polygon(3px 0%, 100% 0%, calc(100% - 3px) 100%, 0% 100%);
+  }
+
+  /* EMBLEMAS */
+  .emblem-list { display: flex; flex-direction: column; gap: 1rem; }
+  .emblem-row {
+    display: flex; align-items: center; gap: 1.5rem;
+    background: rgba(10,5,3,0.8); border: 1px solid rgba(255,80,0,0.15);
+    padding: 1.2rem 1.5rem; transition: all 0.25s; position: relative;
+  }
+  .emblem-row::before { content: '♦'; position: absolute; left: -1px; top: 50%; transform: translateY(-50%); color: var(--fire); font-size: 0.8rem; }
+  .emblem-row:hover { background: rgba(255,80,0,0.06); border-color: rgba(255,80,0,0.35); padding-left: 2rem; }
+  .emblem-emoji { font-size: 2.2rem; min-width: 3rem; text-align: center; filter: drop-shadow(0 0 8px rgba(255,150,0,0.4)); }
+  .emblem-info { flex: 1; }
+  .emblem-name { font-size: 0.82rem; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 0.25rem; text-transform: uppercase; }
+  .emblem-desc { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.82rem; color: #907060; line-height: 1.4; }
+  .emblem-rare {
+    font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.2rem 0.7rem; white-space: nowrap;
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    background: rgba(139,0,0,0.4); color: #ff8080; border: 1px solid rgba(139,0,0,0.5);
+  }
+
+  /* REDES */
+  .social-section { position: relative; z-index: 1; padding: 4rem 2rem; text-align: center; }
+  .social-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 800px; margin: 2rem auto 0; }
+  .social-link {
+    display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.7rem 1.4rem; border: 1px solid rgba(255,140,0,0.2); color: #a08060;
+    transition: all 0.25s;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    background: rgba(255,80,0,0.04);
+  }
+  .social-link:hover { color: var(--ember); border-color: var(--ember); background: rgba(255,80,0,0.1); transform: translateY(-3px); }
+  .social-link .s-icon { font-size: 1.1rem; }
+
+  /* FOOTER */
   footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 3rem 2rem;
-    border-top: 1px solid rgba(255,80,0,0.15);
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    color: #604030;
+    position: relative; z-index: 1; text-align: center;
+    padding: 3rem 2rem; border-top: 1px solid rgba(255,80,0,0.15);
+    font-size: 0.7rem; letter-spacing: 0.15em; color: #604030;
   }
   footer span { color: var(--fire); }
 
-  /* ─── ANIMATIONS ─── */
+  /* ANIMS */
   @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeUp   { from { opacity: 0; transform: translateY(30px);  } to { opacity: 1; transform: translateY(0); } }
   @keyframes blazeIn  { from { opacity: 0; transform: scale(0.85); filter: blur(10px); } to { opacity: 1; transform: scale(1); filter: none; } }
   @keyframes float    { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
   @keyframes pulse    { 0%,100% { opacity: 0.8; } 50% { opacity: 1; } }
-
-  /* ─── REVEAL ON SCROLL ─── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
-
-  /* ─── SCROLLBAR ─── */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--dark); }
   ::-webkit-scrollbar-thumb { background: var(--blood); border-radius: 3px; }
 </style>
 </head>
-<!--Mejora tu HTML (IMPORTANTE)-->
-<!--En tu código agrega esto dentro de <head>:-->
-<meta name="description" content="Juego Bestias y Monstruos en Roblox. Elige tu bestia y domina la era salvaje.">
-<meta name="keywords" content="Roblox, Bestias, Monstruos, juego, bestias y monstruos">
- <!--👉 Esto ayuda a Google a entender tu página-->
 <body>
 
 <canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">🔥 BESTIAS Y MONSTRUOS</span>
+  <div class="nav-links">
+    <a href="#bestias">💠 Bestias</a>
+    <a href="#monstruos">⚠️ Monstruos</a>
+    <a href="#tienda">🛒 Tienda</a>
+    <a href="#emblemas">🏅 Emblemas</a>
+    <a href="#redes">📣 Comunidad</a>
+    <a href="https://www.roblox.com/es/games/103451711855402/BESTIAS-Y-MONSTRUOS" target="_blank" class="nav-play">⚔ JUGAR</a>
+  </div>
+</nav>
 
 <!-- HERO -->
 <div class="hero">
@@ -469,7 +383,7 @@
   <div class="scroll-hint">EXPLORAR</div>
 </div>
 
-<div class="divider"></div>
+<div class="divider" data-icon="⚔"></div>
 
 <!-- LORE -->
 <div class="lore-strip reveal" style="margin-top:4rem;">
@@ -485,10 +399,9 @@
 
 <!-- BESTIAS PURAS -->
 <section id="bestias">
-  <p class="eyebrow" style="text-align:center; animation:none; opacity:1;">💠 CATEGORÍAS</p>
+  <p class="eyebrow" style="text-align:center; opacity:1;">💠 CATEGORÍAS</p>
   <h2 class="section-title reveal">👑 Bestias Puras</h2>
   <p class="section-sub reveal">El linaje más poderoso y equilibrado de la era</p>
-
   <div class="beast-grid reveal">
     <div class="beast-card pura"><span class="icon">🦁</span><span class="name">Bestia León</span><span class="badge badge-pura">Pura</span></div>
     <div class="beast-card pura"><span class="icon">🐲</span><span class="name">Bestia Dragón</span><span class="badge badge-pura">Pura</span></div>
@@ -501,13 +414,12 @@
   </div>
 </section>
 
-<div class="divider" style="z-index:1; position:relative;"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--dark);padding:0 1rem;color:var(--gold);font-size:1.2rem;">🩸</span></div>
+<div class="divider" data-icon="🩸"></div>
 
 <!-- BESTIAS CORRUPTAS -->
 <section>
   <h2 class="section-title reveal">🩸 Bestias Corruptas</h2>
   <p class="section-sub reveal">Poder oscuro al precio de tu cordura</p>
-
   <div class="beast-grid reveal">
     <div class="beast-card corrupta"><span class="icon">🕷️</span><span class="name">Bestia Araña</span><span class="badge badge-corrupta">Corrupta</span></div>
     <div class="beast-card corrupta"><span class="icon">🐳</span><span class="name">Bestia Ballena</span><span class="badge badge-corrupta">Corrupta</span></div>
@@ -517,24 +429,22 @@
   </div>
 </section>
 
-<div class="divider" style="z-index:1; position:relative;"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--dark);padding:0 1rem;color:var(--gold);font-size:1.2rem;">⚖️</span></div>
+<div class="divider" data-icon="⚖️"></div>
 
 <!-- BESTIA ORIGEN -->
 <section>
   <h2 class="section-title reveal">⚖️ Bestia Origen</h2>
   <p class="section-sub reveal">El comienzo de todo poder</p>
-  <div class="beast-grid reveal" style="max-width:400px; margin:0 auto;">
+  <div class="beast-grid reveal" style="max-width:300px; margin:0 auto;">
     <div class="beast-card origen"><span class="icon">👤</span><span class="name">Bestia Humano</span><span class="badge badge-origen">Origen</span></div>
   </div>
 </section>
 
 <!-- MONSTRUOS -->
-<section>
+<section id="monstruos">
   <h2 class="section-title reveal">⚠️ Monstruos Peligrosos</h2>
   <p class="section-sub reveal">Bestias sin dueño. Criaturas sin piedad.</p>
-
   <div class="monster-cols reveal">
-    <!-- JEFES -->
     <div class="monster-block">
       <h3 class="h3-boss">👑 Jefes</h3>
       <ul class="monster-list">
@@ -544,11 +454,10 @@
         <li><span class="emo">🐔</span> Basilisco</li>
         <li><span class="emo">🐗</span> Jabalí Mutante</li>
         <li><span class="emo">🦕</span> Plesiosaurio</li>
-        <li><span class="emo">🧊</span> <em style="opacity:0.5;">??? Por descubrir</em></li>
-        <li><span class="emo">🌳</span> <em style="opacity:0.5;">??? Por descubrir</em></li>
+        <li><span class="emo">🧊</span> <em style="opacity:0.4;">??? Por descubrir</em></li>
+        <li><span class="emo">🌳</span> <em style="opacity:0.4;">??? Por descubrir</em></li>
       </ul>
     </div>
-    <!-- HOSTILES -->
     <div class="monster-block">
       <h3 class="h3-hostile">👹 NPC Hostiles</h3>
       <ul class="monster-list">
@@ -558,17 +467,166 @@
         <li><span class="emo">🐺</span> Licántropo Lunar</li>
         <li><span class="emo">🐲</span> Dragón Abisal</li>
         <li><span class="emo">🐴</span> Caballo</li>
-        <li><span class="emo">⛄</span> <em style="opacity:0.5;">??? Por descubrir</em></li>
-        <li><span class="emo">🌿</span> <em style="opacity:0.5;">??? Por descubrir</em></li>
+        <li><span class="emo">⛄</span> <em style="opacity:0.4;">??? Por descubrir</em></li>
+        <li><span class="emo">🌿</span> <em style="opacity:0.4;">??? Por descubrir</em></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- WARNING -->
 <div class="warning-banner reveal">
   ⛓️‍💥 Aún hay Bestias ocultas esperando ser liberadas ⛓️‍💥
 </div>
+
+<div class="divider" data-icon="🛒"></div>
+
+<!-- TIENDA -->
+<section id="tienda">
+  <h2 class="section-title reveal">🛒 Tienda</h2>
+  <p class="section-sub reveal">Apoya el juego y desata tu verdadero poder</p>
+
+  <div class="shop-tabs reveal">
+    <button class="shop-tab active" onclick="switchTab('gamepasses',this)">🔥 Gamepasses</button>
+    <button class="shop-tab" onclick="switchTab('cristales',this)">💎 Cristales</button>
+  </div>
+
+  <div class="shop-panel active" id="panel-gamepasses">
+    <div class="pass-grid">
+      <div class="pass-card">
+        <span class="pass-icon">🐲🔥</span>
+        <div class="pass-name">🎮🔥 Pase de Fuego 🔥🎮</div>
+        <div class="pass-desc">Apoya "Dragón de Fuego: Duelos Ardientes" y recibe beneficios exclusivos para los más valientes de la Era Salvaje.</div>
+        <ul class="pass-perks">
+          <li>Pase de fuego exclusivo</li>
+          <li>Apoyas directamente al creador</li>
+          <li>Insignia especial de jugador</li>
+        </ul>
+        <span class="pass-price">🔵 6 Robux</span>
+      </div>
+      <div class="pass-card">
+        <span class="pass-icon">🐲🔮</span>
+        <div class="pass-name">🧝‍♂️🔥 Pase Despertar Místico 🔥🐲</div>
+        <div class="pass-desc">El despertar definitivo. Mayor poder, mayores recompensas y mayor leyenda en la Era Salvaje.</div>
+        <ul class="pass-perks">
+          <li>Todo lo del Pase de Fuego</li>
+          <li>Beneficios adicionales de despertar</li>
+          <li>Apoyo premium al creador</li>
+        </ul>
+        <span class="pass-price">🔵 12 Robux</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="shop-panel" id="panel-cristales">
+    <div class="crystal-grid">
+      <div class="crystal-card">
+        <span class="crystal-icon">💎</span>
+        <div class="crystal-amount">100</div>
+        <div class="crystal-name">Cristales</div>
+        <span class="crystal-price">🔵 10 R$</span>
+      </div>
+      <div class="crystal-card">
+        <span class="crystal-icon">💎</span>
+        <div class="crystal-amount">200</div>
+        <div class="crystal-name">Cristales</div>
+        <span class="crystal-price">🔵 20 R$</span>
+      </div>
+      <div class="crystal-card">
+        <span class="crystal-icon">💎</span>
+        <div class="crystal-amount">300</div>
+        <div class="crystal-name">Cristales</div>
+        <span class="crystal-price">🔵 30 R$</span>
+      </div>
+      <div class="crystal-card">
+        <span class="crystal-icon">💎</span>
+        <div class="crystal-amount">400</div>
+        <div class="crystal-name">Cristales</div>
+        <span class="crystal-price">🔵 40 R$</span>
+      </div>
+      <div class="crystal-card best-value">
+        <span class="crystal-icon">💎</span>
+        <div class="crystal-amount">500</div>
+        <div class="crystal-name">Cristales</div>
+        <span class="crystal-price">🔵 50 R$</span>
+      </div>
+      <div class="crystal-card">
+        <span class="crystal-icon">💎</span>
+        <div class="crystal-amount">600</div>
+        <div class="crystal-name">Cristales</div>
+        <span class="crystal-price">🔵 60 R$</span>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:2rem; font-size:0.7rem; color:#604030; font-family:'IM Fell English',serif; font-style:italic;">
+      Los Cristales 💎 se adquieren directamente dentro del juego en Roblox.
+    </p>
+  </div>
+</section>
+
+<div class="divider" data-icon="🏅"></div>
+
+<!-- EMBLEMAS -->
+<section id="emblemas">
+  <h2 class="section-title reveal">🏅 Emblemas & Logros</h2>
+  <p class="section-sub reveal">Demuestra tu poder. Cada emblema cuenta tu historia.</p>
+  <div class="emblem-list reveal">
+    <div class="emblem-row">
+      <div class="emblem-emoji">🏆</div>
+      <div class="emblem-info">
+        <div class="emblem-name">🎁 Emblema de Bienvenida 🎁</div>
+        <div class="emblem-desc">Tu primer paso en la Era Salvaje. Prepárate para desatar el poder de tu bestia entre: León, Dragón, Serpiente, Tortuga, Fénix y más.</div>
+      </div>
+      <span class="emblem-rare">Imposible</span>
+    </div>
+    <div class="emblem-row">
+      <div class="emblem-emoji">⚔️</div>
+      <div class="emblem-info">
+        <div class="emblem-name">✖️ Emblemas de Combate ✖️</div>
+        <div class="emblem-desc">Derrota a 10 enemigos sin morir. Solo los más hábiles sobreviven.</div>
+      </div>
+      <span class="emblem-rare">Imposible</span>
+    </div>
+    <div class="emblem-row">
+      <div class="emblem-emoji">🔥</div>
+      <div class="emblem-info">
+        <div class="emblem-name">🔥 Instinto Dominante 🔥</div>
+        <div class="emblem-desc">Elimina a un enemigo usando solo habilidades de bestia. Demuestra que eres más que humano.</div>
+      </div>
+      <span class="emblem-rare">Imposible</span>
+    </div>
+    <div class="emblem-row">
+      <div class="emblem-emoji">🌑</div>
+      <div class="emblem-info">
+        <div class="emblem-name">🔮 Bestia Oculta 🔮</div>
+        <div class="emblem-desc">Desbloqueado al liberar la forma completa de tu bestia. Muy pocos han llegado tan lejos.</div>
+      </div>
+      <span class="emblem-rare">Imposible</span>
+    </div>
+    <div class="emblem-row">
+      <div class="emblem-emoji">🦅</div>
+      <div class="emblem-info">
+        <div class="emblem-name">🐾 Primera Vez Cazando 🐾</div>
+        <div class="emblem-desc">El dragón alza el vuelo como depredador supremo. El inicio de tu leyenda en la Era Salvaje.</div>
+      </div>
+      <span class="emblem-rare">Imposible</span>
+    </div>
+    <div class="emblem-row">
+      <div class="emblem-emoji">🕷️</div>
+      <div class="emblem-info">
+        <div class="emblem-name">Emblema de la Bestia Araña</div>
+        <div class="emblem-desc">Premio exclusivo para los que han liberado el poder oculto de la Bestia Araña.</div>
+      </div>
+      <span class="emblem-rare">Imposible</span>
+    </div>
+    <div class="emblem-row">
+      <div class="emblem-emoji">🦂</div>
+      <div class="emblem-info">
+        <div class="emblem-name">Emblema de la Bestia Escorpión</div>
+        <div class="emblem-desc">Un arácnido con grandes pinzas y una larga cola venenosa. Para los más letales.</div>
+      </div>
+      <span class="emblem-rare">Imposible</span>
+    </div>
+  </div>
+</section>
 
 <div class="lore-strip reveal">
   <p>
@@ -576,6 +634,24 @@
     Cada rincón del mundo oculta secretos. Cada bestia que domines te acerca más
     al verdadero poder de la Era Salvaje. <span class="highlight">Tu leyenda comienza hoy.</span>
   </p>
+</div>
+
+<div class="divider" data-icon="📣"></div>
+
+<!-- REDES SOCIALES -->
+<div class="social-section" id="redes">
+  <p class="eyebrow" style="opacity:1;">SÍGUENOS</p>
+  <h2 class="section-title reveal">📣 Comunidad</h2>
+  <p class="section-sub reveal">Únete a la era salvaje en todas las plataformas</p>
+  <div class="social-grid reveal">
+    <a class="social-link" href="https://www.tiktok.com/@dragonprimordial?lang=es" target="_blank"><span class="s-icon">🎵</span> TikTok</a>
+    <a class="social-link" href="https://x.com/dragonprimordia" target="_blank"><span class="s-icon">𝕏</span> Twitter</a>
+    <a class="social-link" href="https://www.instagram.com/dragonprimordial/" target="_blank"><span class="s-icon">📸</span> Instagram</a>
+    <a class="social-link" href="https://www.threads.com/@dragonprimordial" target="_blank"><span class="s-icon">🧵</span> Threads</a>
+    <a class="social-link" href="https://www.facebook.com/profile.php?id=61575355656190" target="_blank"><span class="s-icon">📘</span> Facebook</a>
+    <a class="social-link" href="https://discord.com/channels/1489401096530301128/1489401098518139032" target="_blank"><span class="s-icon">💬</span> Discord</a>
+    <a class="social-link" href="https://www.youtube.com/@Drag%C3%B3nPrimordial" target="_blank"><span class="s-icon">▶️</span> YouTube</a>
+  </div>
 </div>
 
 <!-- CTA FINAL -->
@@ -587,65 +663,56 @@
 
 <!-- FOOTER -->
 <footer>
-  <span>🔥 BESTIAS Y MONSTRUOS</span> · Juego de Roblox · Era Salvaje<br><br>
+  <span>🔥 BESTIAS Y MONSTRUOS</span> · Juego de Roblox · Era Salvaje · De @4UFrancisco<br><br>
   Hecho con fuego y garras 🐲
 </footer>
 
 <script>
-// ─── PARTICLES (embers) ───
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let W = canvas.width = window.innerWidth;
 let H = canvas.height = window.innerHeight;
 window.addEventListener('resize', () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; });
 
-const embers = Array.from({length: 80}, () => ({
-  x: Math.random() * W,
-  y: H + Math.random() * 100,
-  size: Math.random() * 2.5 + 0.5,
-  speed: Math.random() * 0.8 + 0.2,
-  drift: (Math.random() - 0.5) * 0.4,
-  alpha: Math.random() * 0.6 + 0.1,
-  hue: Math.random() * 40 + 10
+const embers = Array.from({length:80}, () => ({
+  x: Math.random()*W, y: H+Math.random()*100,
+  size: Math.random()*2.5+0.5, speed: Math.random()*0.8+0.2,
+  drift: (Math.random()-0.5)*0.4, alpha: Math.random()*0.6+0.1, hue: Math.random()*40+10
 }));
 
 function drawEmbers() {
-  ctx.clearRect(0, 0, W, H);
+  ctx.clearRect(0,0,W,H);
   embers.forEach(e => {
-    e.y -= e.speed;
-    e.x += e.drift;
-    e.alpha += (Math.random() - 0.5) * 0.02;
-    e.alpha = Math.max(0.05, Math.min(0.7, e.alpha));
-    if (e.y < -10) { e.y = H + 10; e.x = Math.random() * W; }
-    ctx.beginPath();
-    ctx.arc(e.x, e.y, e.size, 0, Math.PI * 2);
-    ctx.fillStyle = `hsla(${e.hue}, 100%, 60%, ${e.alpha})`;
-    ctx.fill();
+    e.y-=e.speed; e.x+=e.drift;
+    e.alpha+=((Math.random()-0.5)*0.02);
+    e.alpha=Math.max(0.05,Math.min(0.7,e.alpha));
+    if(e.y<-10){e.y=H+10; e.x=Math.random()*W;}
+    ctx.beginPath(); ctx.arc(e.x,e.y,e.size,0,Math.PI*2);
+    ctx.fillStyle=`hsla(${e.hue},100%,60%,${e.alpha})`; ctx.fill();
   });
   requestAnimationFrame(drawEmbers);
 }
 drawEmbers();
 
-// ─── SCROLL REVEAL ───
-const reveals = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-      obs.unobserve(e.target);
-    }
+  entries.forEach((e,i) => {
+    if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); obs.unobserve(e.target); }
   });
-}, { threshold: 0.1 });
-reveals.forEach(el => obs.observe(el));
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// ─── BEAST CARD HOVER GLOW ───
+function switchTab(panel, btn) {
+  document.querySelectorAll('.shop-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.shop-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+panel).classList.add('active');
+  btn.classList.add('active');
+}
+
 document.querySelectorAll('.beast-card').forEach(card => {
   card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = ((e.clientX - r.left) / r.width) * 100;
-    const y = ((e.clientY - r.top) / r.height) * 100;
-    card.style.setProperty('--mx', x + '%');
-    card.style.setProperty('--my', y + '%');
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+    card.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
   });
 });
 </script>
